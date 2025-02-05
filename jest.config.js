@@ -1,7 +1,7 @@
 module.exports = {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/backend/src/'],
   collectCoverageFrom: [
-    '<rootDir>/src/**/*.ts',
+    '<rootDir>/backend/src/**/*.ts'
   ],
   testTimeout: 60000,
   coverageDirectory: 'coverage',

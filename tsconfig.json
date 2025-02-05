@@ -13,6 +13,8 @@
     ],
     "sourceMap": true,
     "inlineSources": true,
-    "sourceRoot": "/"
+    "sourceRoot": "/",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   }
 }
