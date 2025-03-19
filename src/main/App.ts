@@ -1,12 +1,12 @@
-import fs from 'fs'
 import path from 'path'
+import express from 'express'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
 import connectPgSimple from 'connect-pg-simple'
-import express, { type Response, type Request, type RequestHandler } from 'express'
+import { Logs } from '../util/Logs'
 
-const PGSession = connectPgSimple(session)
+// const PGSession = connectPgSimple(session)
 
 export class App {
   public app: express.Application
@@ -43,12 +43,12 @@ export class App {
     this.app.use(bodyParser.urlencoded({ extended: true }))
     this.app.use(cookieParser())
 
-    this.app.use(`${process.env.BASE_PATH}/static`,
-      express.static(path.join(__dirname, '../static'), {
-        maxAge: '7 days',
-        cacheControl: true
-      })
-    )
+    // this.app.use(`${process.env.BASE_PATH}/static`,
+    //   express.static(path.join(__dirname, '../static'), {
+    //     maxAge: '7 days',
+    //     cacheControl: true
+    //   })
+    // )
 
     this.app.use((req: any, res, next) => {
       const log: any = {
@@ -62,27 +62,27 @@ export class App {
         cookies: req.cookies
       }
 
-      console.log(JSON.stringify(log, null, 2))
+      Logs.log(JSON.stringify(log, null, 2))
 
       res.setHeader('X-Powered-By', 'arqsys-api')
       next()
     })
 
-    this.app.use(session({
-      name: 'foregon_session',
-      cookie: {
-        maxAge: 31536000000,
-        secure: process.env.ENV.toLowerCase().startsWith('prod'),
-        httpOnly: true
-      },
-      resave: true,
-      saveUninitialized: true,
-      secret: process.env.SESSION_SECRET,
-      store: new PGSession({
-        pool: undefined,
-        tableName: 'sessions'
-      })
-    }))
+    // this.app.use(session({
+    //   name: 'foregon_session',
+    //   cookie: {
+    //     maxAge: 31536000000,
+    //     secure: process.env.ENV.toLowerCase().startsWith('prod'),
+    //     httpOnly: true
+    //   },
+    //   resave: true,
+    //   saveUninitialized: true,
+    //   secret: process.env.SESSION_SECRET,
+    //   store: new PGSession({
+    //     pool: undefined,
+    //     tableName: 'sessions'
+    //   })
+    // }))
   }
 
   private setupMiddlewaresEnd (): void {
