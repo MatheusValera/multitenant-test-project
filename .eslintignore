@@ -1,3 +1,4 @@
 .vscode
+jest*.js
 node_modules
 package_lock.json
