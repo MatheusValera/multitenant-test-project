@@ -9,5 +9,6 @@ module.exports = {
   transform: {
     '.+\\.ts$': 'ts-jest'
   },
+  testMatch: ['**/*.spec.ts', '**/*.steps.ts', '**/*.test.ts'],
   testTimeout: 60000
 }
