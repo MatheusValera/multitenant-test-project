@@ -8,7 +8,7 @@ export interface IUser {
   name: string
   email: string
   password: string
-  jobFunction: EJobFunction
+  jobFunction: string | EJobFunction
   createdAt: Date
   updatedAt: Date
 }

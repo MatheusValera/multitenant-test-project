@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import { ICompany } from '../../domain/data/model/ICompany'
-import { ICompanyRepository } from '../../domain/data/repositories/ICompanyRepository'
+import { ICompany } from '../../../domain/data/model/ICompany'
+import { ICompanyRepository } from '../../../domain/data/repository/ICompanyRepository'
 
 export class CompanyRepository implements ICompanyRepository {
   private readonly prisma: PrismaClient
@@ -9,8 +9,12 @@ export class CompanyRepository implements ICompanyRepository {
     this.prisma = prisma
   }
 
-  async create (company: ICompany): Promise<ICompany> {
-    return this.prisma.company.create({ data: company })
+  async update (id: string, data: Partial<Omit<ICompany, 'createdAt' | 'updatedAt'>>): Promise<ICompany> {
+    return this.prisma.company.update({ where: { id }, data })
+  }
+
+  async create (data: Omit<ICompany, 'createdAt' | 'updatedAt' | 'id'>): Promise<ICompany> {
+    return this.prisma.company.create({ data })
   }
 
   async findById (id: string): Promise<ICompany | null> {
@@ -19,10 +23,6 @@ export class CompanyRepository implements ICompanyRepository {
 
   async findByEmail (email: string): Promise<ICompany | null> {
     return this.prisma.company.findUnique({ where: { email } })
-  }
-
-  async update (id: string, company: Partial<ICompany>): Promise<ICompany> {
-    return this.prisma.company.update({ where: { id }, data: company })
   }
 
   async delete (id: string): Promise<void> {

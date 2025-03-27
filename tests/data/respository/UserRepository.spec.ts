@@ -1,6 +1,6 @@
 import { prismaMock } from '../../infra/prisma/PrismaClientMock'
 import { EJobFunction, IUser } from '../../../src/domain/data/model/IUser'
-import { UserRepository } from '../../../src/data/repository/UserRepository'
+import { UserRepository } from '../../../src/data/repository/user/UserRepository'
 
 describe('UserRepository', () => {
   const userRepository = new UserRepository(prismaMock)

@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import { IUser } from '../../domain/data/model/IUser'
-import { IUserRepository } from '../../domain/data/repositories/IUserRepository'
+import { IUser } from '../../../domain/data/model/IUser'
+import { IUserRepository } from '../../../domain/data/repository/IUserRepository'
 
 export class UserRepository implements IUserRepository {
   private readonly prisma: PrismaClient
@@ -9,7 +9,7 @@ export class UserRepository implements IUserRepository {
     this.prisma = prisma
   }
 
-  async create (user: IUser): Promise<IUser> {
+  async create (user: Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>): Promise<IUser> {
     return this.prisma.user.create({ data: user })
   }
 
@@ -21,7 +21,7 @@ export class UserRepository implements IUserRepository {
     return this.prisma.user.findUnique({ where: { email } })
   }
 
-  async update (id: string, user: Partial<IUser>): Promise<IUser> {
+  async update (id: string, user: Partial<Omit<IUser, 'createdAt' | 'updatedAt'>>): Promise<IUser> {
     return this.prisma.user.update({ where: { id }, data: user })
   }
 

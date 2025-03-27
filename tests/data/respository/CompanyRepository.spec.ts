@@ -1,6 +1,6 @@
 import { prismaMock } from '../../infra/prisma/PrismaClientMock'
 import { ICompany } from '../../../src/domain/data/model/ICompany'
-import { CompanyRepository } from '../../../src/data/repository/CompanyRepository'
+import { CompanyRepository } from '../../../src/data/repository/company/CompanyRepository'
 
 describe('CompanyRepository', () => {
   const companyRepository = new CompanyRepository(prismaMock)
