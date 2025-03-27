@@ -1,8 +1,8 @@
 export interface ICompany {
-  Id: string
-  Name: string
-  Email: string
-  CNPJ: string
-  CreatedAt: Date
-  UpdatedAt: Date
+  id: string
+  name: string
+  email: string
+  cnpj: string
+  createdAt: Date
+  updatedAt: Date
 }

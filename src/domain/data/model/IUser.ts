@@ -3,12 +3,12 @@ export enum EJobFunction {
 }
 
 export interface IUser {
-  Id: string
-  CompanyId: string
-  Name: string
-  Email: string
-  Password: string
-  JobFunction: EJobFunction
-  CreatedAt: Date
-  UpdatedAt: Date
+  id: string
+  companyId: string
+  name: string
+  email: string
+  password: string
+  jobFunction: EJobFunction
+  createdAt: Date
+  updatedAt: Date
 }
